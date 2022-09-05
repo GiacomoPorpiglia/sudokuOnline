@@ -18,3 +18,13 @@ export const signup = (formData, navigate) => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+export const deleteAccount = (navigate) => async (dispatch) => {
+    try {
+        await api.deleteAccount()
+        dispatch({type:'DELETE_ACCOUNT'})
+        navigate('/')
+    } catch (error) {
+        console.log(error.message)
+    }
+}

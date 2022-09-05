@@ -12,6 +12,7 @@
   --white: #fff;
   --blue: #00aeef;
   --red: #e91e63;
+  --btn-red: rgb(238, 71, 71);
   --black: #000;
 
   --easy-mode-color: rgb(0, 174, 239);
@@ -89,6 +90,7 @@ nav {
   height: var(--nav-size);
   font-size: var(--font-size-xl);
   color: var(--blue);
+  z-index: 1;
 }
 
 .bottom-banner {
@@ -115,6 +117,10 @@ width: calc(var(--nav-size)/1.5);
 
 #homeLogo, #userLogo:hover {
   cursor: pointer;
+}
+
+#statisticsUsername {
+  margin-bottom: 50px;
 }
 
 
@@ -317,17 +323,110 @@ form > * {
   background-color: #007bff;
 }
 
-.btn-logout {
+.btn-logout, .btn-delete {
   color: white;
+  height: 60px;
+  width: 200px;
+  font-size: var(--font-size);
   margin-top: 50px;
   border: unset;
-  background-color: rgb(238, 71, 71);
+  background-color: var(--btn-red);
+}
+
+.btn-logout:hover,
+.btn-delete:hover {
+  background-color: rgb(221, 41, 41);
+}
+
+.btn-delete {
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
 
 .btn:active {
   border: 1px solid white;
 }
 
+/* div to make all the screen change opacity, except for the #sureToDeleteAccount div */
+.opacity-popup { 
+  background: rgba(0, 0, 0, 0.5);
+  border: 0px none transparent;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  -webkit-tap-highlight-color: transparent;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease 0s;
+  visibility: visible;
+  border: none !important;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+  z-index: 10;
+}
+
+#sureToDeleteAccount {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -200px;
+  width: 400px;
+  height: 150px;
+  background-color: white;
+  box-shadow: 0 5px 12px rgba(92, 99, 105, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+#sureToDeleteAccount > * {
+  margin-bottom: 20px;
+}
+#sureToDeleteAccount>h2 {
+  margin-top: 10px;
+  color: black;
+  font-weight: lighter;
+}
+#sureToDeleteAccount>p {
+  color: black;
+}
+#deleteAccountButtonsContainer > * {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#yesDeleteAccountButton {
+  margin-right: 10px;
+  color: black;
+  background-color: white;
+  border: 1px solid gray;
+}
+#yesDeleteAccountButton:hover {
+  color: white;
+  background-color: var(--btn-red);
+  border: unset;
+}
+#noDeleteAccountButton {
+  margin-left: 10px;
+  background-color: var(--blue);
+  color: white;
+  border: unset;
+}
+#noDeleteAccountButton:hover {
+  background-color: rgb(0, 109, 243);
+}
+#deleteAccountButtonsContainer>*:active {
+  border: 1px solid white;
+}
 
 span {
   white-space: nowrap;

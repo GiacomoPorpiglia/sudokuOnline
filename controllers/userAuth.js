@@ -66,7 +66,19 @@ const signup = async (req, res) => {
     }
 }
 
+
+const deleteAccount = async (req, res) => {
+    try {
+        let {username} = res.locals.jwtPayload
+        const user = await User.findOneAndDelete({username})
+        res.status(200).json({message: "User deleted successfully"})
+    } catch (error) {
+        res.status(500).json({message: "Something went wrong"})
+    }
+}
+
 module.exports = {
     signin,
-    signup
+    signup,
+    deleteAccount
 }

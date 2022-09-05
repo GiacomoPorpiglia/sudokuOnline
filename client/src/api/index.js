@@ -13,6 +13,7 @@ export const getSudoku = (mode) => API.get(`/game?mode=${mode}`)
 
 export const signin = (formData) => API.post('/auth/signin', formData)
 export const signup = (formData) => API.post('/auth/signup', formData)
+export const deleteAccount = () => API.delete('/auth/deleteAccount')
 
 export const updateStatistics = (data) => API.patch('statistics/myStatistics', data)
 export const getMyStatistics = () => API.get('/statistics/myStatistics')
