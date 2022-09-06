@@ -187,6 +187,13 @@ width: calc(var(--nav-size)/1.5);
   box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
 }
 
+/* https: //stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+/* to avoid the inputs of the form to change color in case the user makes a wrong request (ex: passwords don't match) and submits */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
 .title {
   font-size: 50px;
   margin-bottom: 50px;
@@ -430,6 +437,13 @@ form > * {
 
 span {
   white-space: nowrap;
+}
+
+
+.errorDiv {
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 

@@ -9,13 +9,13 @@ export const signin = (formData, navigate) => async (dispatch) => {
         console.log(error.message);
     }
 }
-export const signup = (formData, navigate) => async (dispatch) => {
+export const signup = (formData, navigate, setErrorHandler) => async (dispatch) => {
     try {
         const {data} = await api.signup(formData) //jwt token
         dispatch({type:'AUTH', data})
         navigate('/home')
     } catch (error) {
-        console.log(error.message);
+        setErrorHandler({hasError:true, message:error.response.data.message})
     }
 }
 

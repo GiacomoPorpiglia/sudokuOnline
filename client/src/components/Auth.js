@@ -3,11 +3,14 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { signin, signup } from '../actions/auth'
 import Navbar from './Navbar/Navbar'
+import Error from './Error'
 const Auth = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [isSignUp, setIsSignUp] = useState(false)
+
+    const [errorHandler, setErrorHandler] = useState({hasError: false, message:""})
 
     const [formData, setFormData] = useState({
         username: '',
@@ -24,7 +27,7 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(isSignUp) dispatch(signup(formData, navigate))
+        if(isSignUp) dispatch(signup(formData, navigate, setErrorHandler))
         else dispatch(signin(formData, navigate))
     }
 
@@ -39,6 +42,8 @@ const Auth = () => {
                             <form className="form" onSubmit={handleSubmit}>
                                 <h1 className="title">Sign up</h1>
 
+                                <Error errorHandler={errorHandler} />
+                                
                                 <div className="inputContainer">
                                     <input className="input" id="username" name="username" type="text" placeholder='a' onChange={handleChange}></input>
                                     <label for="" class="label">Username</label>
@@ -102,5 +107,7 @@ const Auth = () => {
     </>
   )
 }
+
+
 
 export default Auth

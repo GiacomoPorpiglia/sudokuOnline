@@ -12,9 +12,12 @@ const dotenv = require('dotenv').config()
 const signin = async (req, res) => {
     const {usernameoremail, password} = req.body
     try {
-        let existingUser = await User.findOne({email: usernameoremail})
+        //deletes blank spaces from start and end of strings
+        let cleanUsernameoremail = usernameoremail.trim().toLowerCase()
+
+        let existingUser = await User.findOne({email: cleanUsernameoremail})
         if (!existingUser) 
-            existingUser = await User.findOne({username: usernameoremail})
+            existingUser = await User.findOne({username: cleanUsernameoremail})
 
         if(!existingUser) return res.status(404).json({message: "User doesn't exist"})
 
@@ -38,21 +41,25 @@ const signin = async (req, res) => {
 const signup = async (req, res) => {
     const {username, email, password, repeatPassword} = req.body
     try {
-        let existingEmail = await User.findOne({email})
+        //.trim() deletes blank spaces from start and end of strings
+        let cleanEmail = email.trim().toLowerCase()
+        let cleanUsername = username.trim().toLowerCase()
+
+        let existingEmail = await User.findOne({email: cleanEmail})
         if (existingEmail) 
             return res.status(500).json({message: "This email is already associated with an existing account"})
 
-        let existingUsername = await User.findOne({username})
+        let existingUsername = await User.findOne({username: cleanUsername})
         if (existingUsername) 
             return res.status(500).json({message: "Username already exists"})
-        if(password!== repeatPassword) 
+        if(password !== repeatPassword) 
             return res.status(500).json({message: "Passwords don't match"})
         
         let hashedPwd = await bcrypt.hash(password, 12)
 
         let encryptedPwd = AES.encrypt(hashedPwd, process.env.AES_SECRET).toString()
 
-        const newUser = await User.create({username, email, password: encryptedPwd})
+        const newUser = await User.create({username: cleanUsername, email: cleanEmail, password: encryptedPwd})
 
         //create jwt token
         const token = jwt.sign({email: newUser.email, username: newUser.username}, process.env.JWT_SECRET, {expiresIn: '2d'})
@@ -61,7 +68,6 @@ const signup = async (req, res) => {
         res.status(200).json({token})
 
     } catch (error) {
-        // console.log(error.message);
         res.status(500).json({message: "Something went wrong"})
     }
 }
