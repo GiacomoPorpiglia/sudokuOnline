@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getMyStatistics } from '../actions/myStatistics'
 import { deleteAccount } from '../actions/auth'
@@ -8,7 +8,7 @@ import jwtDecode from 'jwt-decode'
 import Navbar from './Navbar/Navbar'
 
 
-const User = () => {
+const User = ({myStatistics}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -41,9 +41,6 @@ const User = () => {
             let decodedToken = jwtDecode(JSON.parse(localStorage.getItem('sudokuUser')).token)
             setUsername(decodedToken?.username)
     }, [dispatch])
-
-    
-    const myStatistics = useSelector((state) => state.myStatistics)
 
 
   return (
@@ -88,4 +85,11 @@ const User = () => {
   )
 }
 
-export default User
+const mapStateToProps = (state) => {
+    let myStatistics = state.myStatistics
+    return {
+        myStatistics
+    }
+}
+
+export default connect(mapStateToProps)(User)

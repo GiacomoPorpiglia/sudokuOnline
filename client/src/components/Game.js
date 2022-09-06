@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {getSudoku, updateStatistics} from '../actions/sudoku'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch, connect,} from 'react-redux'
 import {useLocation, useNavigate} from 'react-router-dom'
 import Navbar from './Navbar/Navbar'
 import '../css/index.css'
@@ -8,7 +8,7 @@ import '../css/index.css'
 
 // import { Container, Row, Col } from 'react-bootstrap';
 
-const Game = () => {
+const Game = ({sudoku}) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -136,7 +136,6 @@ const Game = () => {
         navigate('/')
     }
 
-    const sudoku = useSelector((state) => state.sudoku)
 
     return (
         <>
@@ -204,5 +203,12 @@ const Game = () => {
     )
 }
 
-export default Game
+const mapStateToProps = (state) => {
+    let sudoku = state.sudoku
+    return {
+        sudoku
+    }
+}
+
+export default connect(mapStateToProps)(Game)
 
