@@ -28,7 +28,7 @@ const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if(isSignUp) dispatch(signup(formData, navigate, setErrorHandler))
-        else dispatch(signin(formData, navigate))
+        else dispatch(signin(formData, navigate, setErrorHandler))
     }
 
   return (
@@ -76,6 +76,8 @@ const Auth = () => {
                         <div className="signupForm">
                             <form className="form" onSubmit={handleSubmit}>
                                 <h1 className="title">Login</h1>
+
+                                <Error errorHandler={errorHandler} />
 
                                 <div class="inputContainer">
                                     <input className="input" id="usernameoremail" name="usernameoremail" type="text" placeholder='a' onChange={handleChange}></input>

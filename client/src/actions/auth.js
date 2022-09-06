@@ -1,12 +1,12 @@
 import * as api from '../api'
 
-export const signin = (formData, navigate) => async (dispatch) => {
+export const signin = (formData, navigate, setErrorHandler) => async (dispatch) => {
     try {
         const {data} = await api.signin(formData) //jwt token
         dispatch({type:'AUTH', data})
         navigate('/home')
     } catch (error) {
-        console.log(error.message);
+        setErrorHandler({hasError:true, message:error.response.data.message})
     }
 }
 export const signup = (formData, navigate, setErrorHandler) => async (dispatch) => {
