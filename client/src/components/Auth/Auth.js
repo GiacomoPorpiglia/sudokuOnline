@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { signin, signup } from '../actions/auth'
-import Navbar from './Navbar/Navbar'
-import Error from './Error'
+import { signin, signup } from '../../actions/auth'
+import Navbar from '../Navbar/Navbar'
+import Error from '../Error'
 const Auth = () => {
 
     const navigate = useNavigate()
@@ -31,6 +31,15 @@ const Auth = () => {
         else dispatch(signin(formData, navigate, setErrorHandler))
     }
 
+    const togglePassword = (e) => {
+        //switches password from visible to invisible, when eye is clicked
+        let pwdElem = document.querySelector('password')
+        let type = pwdElem.getAttribute('type') === 'password' ? 'text' : 'password'
+        pwdElem.setAttribute('type', type)
+        
+        this.classList.toggle('fa-eye-slash');
+    }
+
   return (
     <>
         <Navbar />
@@ -46,22 +55,22 @@ const Auth = () => {
                                 
                                 <div className="inputContainer">
                                     <input className="input" id="username" name="username" type="text" placeholder='a' onChange={handleChange}></input>
-                                    <label for="" class="label">Username</label>
+                                    <label for="" className="label">Username</label>
                                 </div>
 
                                 <div className="inputContainer">
                                     <input className="input" id="email" name="email" type="email" placeholder='a' onChange={handleChange}></input>
-                                    <label for="" class="label">Email</label>
+                                    <label for="" className="label">Email</label>
                                 </div>
 
                                 <div className="inputContainer">
                                     <input className="input" id="password" name="password" type="password" placeholder='a' onChange={handleChange}></input>
-                                    <label for="" class="label">Password</label>
+                                    <label for="" className="label">Password</label>
                                 </div>
 
                                 <div className="inputContainer">
                                     <input className="input" id="repeatPassword" name="repeatPassword" type="password" placeholder='a' onChange={handleChange}></input>
-                                    <label for="" class="label">Repeat password</label>
+                                    <label for="" className="label">Repeat password</label>
                                 </div>
 
                                 <button className='btn-blue submitBtn' onSubmit={handleSubmit} type="submit">Sign up</button>
@@ -79,15 +88,15 @@ const Auth = () => {
 
                                 <Error errorHandler={errorHandler} />
 
-                                <div class="inputContainer">
+                                <div className="inputContainer">
                                     <input className="input" id="usernameoremail" name="usernameoremail" type="text" placeholder='a' onChange={handleChange}></input>
                                     
-                                    <label class="label">Username or email</label>
+                                    <label className="label">Username or email</label>
                                 </div>
 
-                                <div class="inputContainer">
+                                <div className="inputContainer">
                                     <input className="input" id="password" name="password" type="password" placeholder='a' onChange={handleChange}></input>
-                                    <label class="label">Password</label>
+                                    <label className="label">Password</label>
                                 </div>
                                 
                                 

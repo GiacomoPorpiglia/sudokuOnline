@@ -4,9 +4,8 @@ import Game from './components/Game'
 import Home from './components/Home'
 import BottomBanner from './components/BottomBanner'
 import Landing from './components/Landing'
-import Auth from './components/Auth'
+import Auth from './components/Auth/Auth'
 import User from './components/UserProfile'
-import Navbar from './components/Navbar/Navbar'
 import Controller from './components/Controller'
 
 const App = () => {
