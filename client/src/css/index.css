@@ -660,7 +660,11 @@ span {
 
   .number {
     font-size: var(--font-size-lg);
+    height: calc(var(--sudoku-cell-size)*1.1);
   }
+    .main-game {
+      height: 70%;
+    }
 
 
 }
