@@ -633,6 +633,7 @@ span {
     min-width: unset;
   }
 
+
   .main {
     height: 100vh;
     max-height: 100vh;
@@ -640,13 +641,28 @@ span {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   :root {
 
     --font-size: 1rem;
     --font-size-lg: 1.2rem;
     --font-size-xl: 1.4rem;
+
+    --sudoku-cell-size: calc(100vw / 9 - 3px);
   }
+
+  .screen {
+      min-width: unset;
+  }
+  .main-grid-cell {
+    font-size: var(--font-size-lg);
+  }
+
+  .number {
+    font-size: var(--font-size-lg);
+  }
+
+
 }
 
 .result-screen {
@@ -662,6 +678,8 @@ span {
   flex-direction: column;
   display: none;
 }
+
+
 
 .result-screen.active {
   display: flex;
