@@ -648,7 +648,7 @@ span {
     --font-size-lg: 1.2rem;
     --font-size-xl: 1.4rem;
 
-    --sudoku-cell-size: calc(100vw / 9 - 3px);
+    --sudoku-cell-size: calc(100vw / 9 - 6px);
   }
 
   .screen {
