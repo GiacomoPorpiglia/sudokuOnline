@@ -5,5 +5,5 @@ The website is responsive, so you can use it from different devices without any 
 There are four difficulty settings (Easy, Medium, Hard and Extreme), so everyone can play having fun based on his skill level. <br/>
 I had a lot of fun developing this project, and I feel like I've learned lots of things thanks to it, especially regarding the front-end work, styles ecc... <br />
 Let me know if you encounter any problems during your user experience, and I'll try to solve them :) <br/>
-The website is hosted on Heroku, and you can find it [here](https://sudoku-game-online.herokuapp.com/). Have fun!
+Have fun!
 
